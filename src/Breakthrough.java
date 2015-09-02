@@ -1,7 +1,3 @@
-/**
- * Created by juliano on 25/08/15.
- */
-
 public class Breakthrough {
 
     private int[][] tabuleiro = new int[8][8];

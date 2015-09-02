@@ -1,6 +1,3 @@
-/**
- * Created by juliano on 25/08/15.
- */
 public class TestBreakthrough {
 
     public static void main(String args[])
