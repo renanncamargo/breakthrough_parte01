@@ -57,24 +57,31 @@ public class Breakthrough {
                     {
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
-                        lista.add(new Jogadas(i, j, i-1, j));
-                        lista.add(new Jogadas(i, j, i-1, j+1));
+                    	if(tabuleiro[i-1][j] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j));
+                    	if(tabuleiro[i-1][j+1] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j+1));
                     }
                     if(j!=0 && j!=7)
                     {
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
-                        lista.add(new Jogadas(i, j, i-1, j-1));
-                        lista.add(new Jogadas(i, j, i-1, j));
-                        lista.add(new Jogadas(i, j, i-1, j+1));
+                    	if(tabuleiro[i-1][j-1] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j-1));
+                    	if(tabuleiro[i-1][j] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j));
+                    	if(tabuleiro[i-1][j+1] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j+1));
                     }
                     if(j==7)
                     {
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
                         //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
-                        lista.add(new Jogadas(i, j, i-1, j));
-                        lista.add(new Jogadas(i, j, i-1, j-1));
+                    	if(tabuleiro[i-1][j] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j));
+                    	if(tabuleiro[i-1][j-1] != 1)
+                    		lista.add(new Jogadas(i, j, i-1, j-1));
                     }
                 }
             }
