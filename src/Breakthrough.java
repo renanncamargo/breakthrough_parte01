@@ -1,7 +1,16 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Breakthrough {
 
     private int[][] tabuleiro = new int[8][8];
 
+    /**
+     * Construtor da classe Breakthrough
+     * 
+     * Preenche a matriz que repesenta o tabuleiro com 1s para representar as peças pretas
+     * com 2s para representar as peças brancas e com 0s para representar casas vazias.
+     */
     public Breakthrough()
     {
         for(int i=0; i<8; i++)
@@ -16,6 +25,9 @@ public class Breakthrough {
             }
     }
 
+    /**
+     * Método para imprimir a configuração atual do tabuleiro (posição de peças brancas, pretas e casas vazias
+     */
     public void imprime()
     {
         for(int i=0; i<8; i++)
@@ -26,61 +38,84 @@ public class Breakthrough {
                 System.out.printf("%d ", tabuleiro[i][j]);
             }
         }
+        System.out.printf("%n%n");
     }
 
-    public void jogadasValidasBrancas()
+    /**
+     * Verifica quais as jogadas válidas para as peças brancas e devolve um vetor com todas as jogadas disponíveis.
+     */
+    public ArrayList<Jogadas> jogadasValidasBrancas()
     {
-        /**
-         * Lista jogadas disponíveis para as peças brancas
-         */
+    	//Lista para armazenar as jogadas disponíveis
+    	ArrayList<Jogadas> lista = new ArrayList<Jogadas>();
+    	
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if( tabuleiro[i][j] == 1)
                 {
                     if(j==0)
                     {
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
+                        lista.add(new Jogadas(i, j, i-1, j));
+                        lista.add(new Jogadas(i, j, i-1, j+1));
                     }
                     if(j!=0 && j!=7)
                     {
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j+1);
+                        lista.add(new Jogadas(i, j, i-1, j-1));
+                        lista.add(new Jogadas(i, j, i-1, j));
+                        lista.add(new Jogadas(i, j, i-1, j+1));
                     }
                     if(j==7)
                     {
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
-                        System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j);
+                        //System.out.printf("%d,%d -> %d,%d %n", i, j, i-1, j-1);
+                        lista.add(new Jogadas(i, j, i-1, j));
+                        lista.add(new Jogadas(i, j, i-1, j-1));
                     }
                 }
             }
         }
+        return lista;
     }
 
-    public String jogaBrancas(int x1, int y1, int x2, int y2)
+    public void jogaBrancas(Jogadas jogada)
     {
-        tabuleiro[x1][y1] = 0;
-        tabuleiro[x2][y2] = 1;
-        return "jogo";
+        tabuleiro[jogada.getX1()][jogada.getY1()] = 0;
+        tabuleiro[jogada.getX2()][jogada.getY2()] = 1;
     }
 
-    public String jogaPretas(int x1, int y1, int x2, int y2)
+    public void jogaPretas(Jogadas jogada)
     {
-        tabuleiro[x1][y1] = 0;
-        tabuleiro[x2][y2] = 2;
-        return "jogo";
+        tabuleiro[jogada.getX1()][jogada.getY1()] = 0;
+        tabuleiro[jogada.getX2()][jogada.getY2()] = 2;
     }
 
-    public String fimDeJogo()
+    public void jogadaAleatoriaBrancas(ArrayList<Jogadas> lista)
+    {
+    	Random rand = new Random();
+    	int num = rand.nextInt(lista.size());
+    	jogaBrancas( lista.get(num) );
+    }
+    
+    public boolean fimDeJogo()
     {
         for(int i=0; i<8; i++)
         {
             if(tabuleiro[0][i] == 1)
-                return "Brancas ganham";
+            {
+            	System.out.printf("%n%nBrancas ganham");
+                return true;
+            }
             if(tabuleiro[7][i] == 2)
-                return "Pretas ganham";
+            {
+            	System.out.printf("%n%nPretas ganham");
+                return true;
+            }
         }
-        return "Jogo continua";
+        return false;
     }
 }
