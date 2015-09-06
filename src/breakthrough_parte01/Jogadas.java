@@ -1,3 +1,4 @@
+package breakthrough_parte01;
 /**
  * Created by juliano on 02/09/15.
  */
@@ -37,6 +38,6 @@ public class Jogadas {
     
     public String toString()
     {
-    	return String.format("%n%s,%s->%s,%s%n", x1, y1, x2, y2);
+    	return String.format("%n(%s,%s)->(%s,%s)", x1, y1, x2, y2);
     }
 }
