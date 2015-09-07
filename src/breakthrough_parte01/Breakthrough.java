@@ -4,18 +4,19 @@ import java.util.Random;
 
 public class Breakthrough {
 
-    private int[][] tabuleiro = new int[8][8];
+	private final int ROW = 8;
+	private final int COL = 8;
+    private int[][] tabuleiro = new int[ROW][COL];
 
     /**
-     * Construtor da classe Breakthrough
-     * 
-     * Preenche a matriz que repesenta o tabuleiro com 1s para representar as peças pretas
-     * com 2s para representar as peças brancas e com 0s para representar casas vazias.
+     * Construtor para criação do tabuleiro representado por uma matriz.
+     * Preenche os valores da matriz com números 1 para as peças brancas
+     * 2 para as peças pretas e 0 para as casas vazias.
      */
     public Breakthrough()
     {
-        for(int i=0; i<8; i++)
-            for(int j=0; j<8; j++)
+        for(int i=0; i<ROW; i++)
+            for(int j=0; j<COL; j++)
             {
                 if(i==0 || i==1)
                     tabuleiro[i][j] = 2;
@@ -27,91 +28,58 @@ public class Breakthrough {
     }
 
     /**
-     * Método para imprimir a configuração atual do tabuleiro (posição de peças brancas, pretas e casas vazias
+     * Imprime na tela a configuração atual do tabuleiro.
      */
     public void imprimeTabuleiro()
     {
-        for(int i=0; i<8; i++)
+        //System.out.printf("%n    %d %d %d %d %d %d %d %d %n%n", 0, 1, 2, 3, 4, 5, 6, 7);
+        for(int i=0; i<ROW; i++)
         {
-            System.out.printf("%d%t", i);
-            for(int j=0; j<8; j++)
+            System.out.printf("%d   ", i);
+            for(int j=0; j<COL; j++)
             {
                 System.out.printf("%d ", tabuleiro[i][j]);
             }
             System.out.printf("%n");
         }
-        System.out.printf("%n%n");
+        //System.out.printf("%n    %s %s %s %s %s %s %s %s ", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
     }
-    
-    public void imprimeJogadasBrancas()
-    {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if( tabuleiro[i][j] == 1)
-                {
-                    if(j==0)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j+1);
-                    }
-                    if(j!=0 && j!=7)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j-1);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j+1);
-                    }
-                    if(j==7)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i-1, j-1);
-                    }
-                }
-            }
-        }
-    	
-    }
-
-    public void imprimeJogadasPretas()
-    {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if( tabuleiro[i][j] == 2)
-                {
-                    if(j==0)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j+1);
-                    }
-                    if(j>0 && j<7)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j-1);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j+1);
-                    }
-                    if(j==7)
-                    {
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j);
-                        System.out.printf("(%d,%d)->(%d,%d)%n", i, j, i+1, j-1);
-                    }
-                }
-            }
-        }
-    	
-    }
-
     
     /**
-     * Verifica quais as jogadas válidas para as peças brancas e devolve um vetor com todas as jogadas disponíveis.
-     * @param ArrayList<Jogadas>
-     * @return ArrayList<Jogadas>
+     * Imprime na tela as jogadas disponíves para as peças brancas.
+     * @param lista
+     */
+    public void imprimeJogadasBrancas(ArrayList<Jogadas> lista)
+    {
+    	for(Jogadas j : lista)
+    	{
+    		System.out.print(j);
+    	}
+    }
+
+    /**
+     * Imprime na tela as jogadas disponíves para as peças pretas
+     * @param lista
+     */
+    public void imprimeJogadasPretas(ArrayList<Jogadas> lista)
+    {
+    	for(Jogadas j : lista)
+    	{
+    		System.out.print(j);
+    	}
+    }
+
+    /**
+     * Verifica todas as jogadas válidas disponíves para as peças brancas
+     * @return lista contendo todas as jogadas
      */
     public ArrayList<Jogadas> jogadasValidasBrancas()
     {
     	//Lista para armazenar as jogadas disponíveis
     	ArrayList<Jogadas> lista = new ArrayList<Jogadas>();
     	
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
                 if( tabuleiro[i][j] == 1)
                 {
                     if(j==0)
@@ -142,37 +110,41 @@ public class Breakthrough {
         }
         return lista;
     }
-    
+
+    /**
+     * Verifica todas as jogadas válidas disponíves para as peças pretas
+     * @return lista contendo todas as jogadas
+     */
     public ArrayList<Jogadas> jogadasValidasPretas()
     {
     	//Lista para armazenar as jogadas disponíveis
     	ArrayList<Jogadas> lista = new ArrayList<Jogadas>();
     	
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
                 if( tabuleiro[i][j] == 2)
                 {
                     if(j==0)
                     {
-                    	if(tabuleiro[i-1][j] != 1)
+                    	if(tabuleiro[i+1][j] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j));
-                    	if(tabuleiro[i-1][j+1] != 1)
+                    	if(tabuleiro[i+1][j+1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j+1));
                     }
                     if(j>0 && j<7)
                     {
-                    	if(tabuleiro[i-1][j-1] != 1)
+                    	if(tabuleiro[i+1][j-1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j-1));
-                    	if(tabuleiro[i-1][j] != 1)
+                    	if(tabuleiro[i+1][j] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j));
-                    	if(tabuleiro[i-1][j+1] != 1)
+                    	if(tabuleiro[i+1][j+1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j+1));
                     }
                     if(j==7)
                     {
-                    	if(tabuleiro[i-1][j] != 1)
+                    	if(tabuleiro[i+1][j] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j));
-                    	if(tabuleiro[i-1][j-1] != 1)
+                    	if(tabuleiro[i+1][j-1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j-1));
                     }
                 }
@@ -180,22 +152,39 @@ public class Breakthrough {
         }
         return lista;
     }
-    
+
+    /**
+     * Aplica uma joga para as peças brancas. Usa os valores passados como parâmetro
+     * para comparar a jogada fornecida com as disponíveis na lista de jogadas válidas para as peças brancas.
+     * @param x1 coordenada X de origem
+     * @param y1 coordenada Y de origem
+     * @param x2 coordenada X de destino
+     * @param y2 coordenada Y de destino
+     */
     public void jogaBrancas(int x1, int y1, int x2, int y2)
     {
-//        tabuleiro[jogada.getX1()][jogada.getY1()] = 0;
-//        tabuleiro[jogada.getX2()][jogada.getY2()] = 1;
-    	
     	tabuleiro[x1][y1] = 0;
     	tabuleiro[x2][y2] = 1;
     }
 
-    public void jogaPretas(Jogadas jogada)
+    /**
+     * Aplica uma joga para as peças pretas. Usa os valores passados como parâmetro
+     * para comparar a jogada fornecida com as disponíveis na lista de jogadas válidas para as peças pretas.
+     * @param x1 coordenada X de origem
+     * @param y1 coordenada Y de origem
+     * @param x2 coordenada X de destino
+     * @param y2 coordenada Y de destino
+     */
+    public void jogaPretas(int x1, int y1, int x2, int y2)
     {
-//        tabuleiro[jogada.getX1()][jogada.getY1()] = 0;
-//        tabuleiro[jogada.getX2()][jogada.getY2()] = 2;
+    	tabuleiro[x1][y1] = 0;
+    	tabuleiro[x2][y2] = 1;
     }
 
+    /**
+     * Aplica uma jogada aleatória válida para as peças brancas
+     * @param lista Lista com as jogadas válidas disponíveis para as peças brancas
+     */
     public void jogadaAleatoriaBrancas(ArrayList<Jogadas> lista)
     {
     	Random rand = new Random();
@@ -203,9 +192,13 @@ public class Breakthrough {
     	jogaBrancas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2() );
     }
     
+    /**
+     * 
+     * @return True se o jogo terminou com algum vencedor. Do contrário False
+     */
     public boolean fimDeJogo()
     {
-        for(int i=0; i<8; i++)
+        for(int i=0; i<ROW; i++)
         {
             if(tabuleiro[0][i] == 1)
             {
