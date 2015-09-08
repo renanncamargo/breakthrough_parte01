@@ -6,7 +6,7 @@ public class Breakthrough {
 
 	private final int ROW = 8;
 	private final int COL = 8;
-    private int[][] tabuleiro = new int[ROW][COL];
+    public int[][] tabuleiro = new int[ROW][COL];
 
     /**
      * Construtor para criação do tabuleiro representado por uma matriz.
@@ -73,7 +73,7 @@ public class Breakthrough {
      * Verifica todas as jogadas válidas disponíves para as peças brancas
      * @return lista contendo todas as jogadas
      */
-    public ArrayList<Jogadas> jogadasValidasBrancas()
+    public ArrayList<Jogadas> jogadasValidasBrancas(int [][] tabuleiro)
     {
     	//Lista para armazenar as jogadas disponíveis
     	ArrayList<Jogadas> lista = new ArrayList<Jogadas>();
@@ -115,7 +115,7 @@ public class Breakthrough {
      * Verifica todas as jogadas válidas disponíves para as peças pretas
      * @return lista contendo todas as jogadas
      */
-    public ArrayList<Jogadas> jogadasValidasPretas()
+    public ArrayList<Jogadas> jogadasValidasPretas(int [][] tabuleiro)
     {
     	//Lista para armazenar as jogadas disponíveis
     	ArrayList<Jogadas> lista = new ArrayList<Jogadas>();
@@ -161,10 +161,19 @@ public class Breakthrough {
      * @param x2 coordenada X de destino
      * @param y2 coordenada Y de destino
      */
-    public void jogaBrancas(int x1, int y1, int x2, int y2)
+    public boolean jogaBrancas(int x1, int y1, int x2, int y2, ArrayList<Jogadas> lista)
     {
-    	tabuleiro[x1][y1] = 0;
-    	tabuleiro[x2][y2] = 1;
+    	for(Jogadas j : lista)
+    	{
+    		if(j.getX1() == x1 && j.getY1() == y1)
+    			if(j.getX2() == x2 && j.getY2() == y2)
+    			{
+        		    tabuleiro[x1][y1] = 0;
+        	    	tabuleiro[x2][y2] = 1;
+        	    	return true;
+    			}//Fim if
+    	}//Fim for
+    	return false;
     }
 
     /**
@@ -175,10 +184,19 @@ public class Breakthrough {
      * @param x2 coordenada X de destino
      * @param y2 coordenada Y de destino
      */
-    public void jogaPretas(int x1, int y1, int x2, int y2)
+    public boolean jogaPretas(int x1, int y1, int x2, int y2, ArrayList<Jogadas> lista)
     {
-    	tabuleiro[x1][y1] = 0;
-    	tabuleiro[x2][y2] = 2;
+    	for(Jogadas j : lista)
+    	{
+    		if(j.getX1() == x1 && j.getY1() == y1)
+    			if(j.getX2() == x2 && j.getY2() == y2)
+    			{
+        		    tabuleiro[x1][y1] = 0;
+        	    	tabuleiro[x2][y2] = 1;
+        	    	return true;
+    			}//Fim if
+    	}//Fim for
+    	return false;
     }
 
     /**
@@ -189,7 +207,8 @@ public class Breakthrough {
     {
     	Random rand = new Random();
     	int num = rand.nextInt(lista.size());
-    	jogaBrancas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2() );
+    	System.out.print(lista.get(num));
+    	jogaBrancas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2(), lista );
     }
     
     /**
@@ -200,7 +219,7 @@ public class Breakthrough {
     {
     	Random rand = new Random();
     	int num = rand.nextInt(lista.size());
-    	jogaPretas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2() );
+    	jogaPretas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2(), lista );
     }
 
     /**
