@@ -192,7 +192,7 @@ public class Breakthrough {
     			if(j.getX2() == x2 && j.getY2() == y2)
     			{
         		    tabuleiro[x1][y1] = 0;
-        	    	tabuleiro[x2][y2] = 1;
+        	    	tabuleiro[x2][y2] = 2;
         	    	return true;
     			}//Fim if
     	}//Fim for
