@@ -32,7 +32,7 @@ public class Breakthrough {
      */
     public void imprimeTabuleiro()
     {
-        //System.out.printf("%n    %d %d %d %d %d %d %d %d %n%n", 0, 1, 2, 3, 4, 5, 6, 7);
+        System.out.printf("%n    %d %d %d %d %d %d %d %d %n%n", 0, 1, 2, 3, 4, 5, 6, 7);
         for(int i=0; i<ROW; i++)
         {
             System.out.printf("%d   ", i);
@@ -42,7 +42,7 @@ public class Breakthrough {
             }
             System.out.printf("%n");
         }
-        //System.out.printf("%n    %s %s %s %s %s %s %s %s ", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
+        System.out.printf("%n    %s %s %s %s %s %s %s %s ", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
     }
     
     /**
@@ -207,6 +207,7 @@ public class Breakthrough {
     {
     	Random rand = new Random();
     	int num = rand.nextInt(lista.size());
+    	System.out.print("Brancas jogam ");
     	System.out.print(lista.get(num));
     	jogaBrancas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2(), lista );
     }
