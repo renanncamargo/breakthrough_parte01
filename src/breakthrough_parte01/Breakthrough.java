@@ -178,7 +178,7 @@ public class Breakthrough {
     public void jogaPretas(int x1, int y1, int x2, int y2)
     {
     	tabuleiro[x1][y1] = 0;
-    	tabuleiro[x2][y2] = 1;
+    	tabuleiro[x2][y2] = 2;
     }
 
     /**
@@ -192,6 +192,17 @@ public class Breakthrough {
     	jogaBrancas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2() );
     }
     
+    /**
+     * Aplica uma jogada aleatória válida para as peças brancas
+     * @param lista Lista com as jogadas válidas disponíveis para as peças brancas
+     */
+    public void jogadaAleatoriaPretas(ArrayList<Jogadas> lista)
+    {
+    	Random rand = new Random();
+    	int num = rand.nextInt(lista.size());
+    	jogaPretas( lista.get(num).getX1(), lista.get(num).getY1(), lista.get(num).getX2(), lista.get(num).getY2() );
+    }
+
     /**
      * 
      * @return True se o jogo terminou com algum vencedor. Do contrário False
