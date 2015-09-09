@@ -89,7 +89,7 @@ public class Breakthrough {
                     	if(tabuleiro[i-1][j+1] != 1)
                     		lista.add(new Jogadas(i, j, i-1, j+1));
                     }
-                    if(j>0 && j<7)
+                    if(j>0 && j<7 && i!=0)
                     {
                     	if(tabuleiro[i-1][j-1] != 1)
                     		lista.add(new Jogadas(i, j, i-1, j-1));
@@ -98,7 +98,7 @@ public class Breakthrough {
                     	if(tabuleiro[i-1][j+1] != 1)
                     		lista.add(new Jogadas(i, j, i-1, j+1));
                     }
-                    if(j==7)
+                    if(j==7 && i!=0)
                     {
                     	if(tabuleiro[i-1][j] != 1)
                     		lista.add(new Jogadas(i, j, i-1, j));
@@ -131,7 +131,7 @@ public class Breakthrough {
                     	if(tabuleiro[i+1][j+1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j+1));
                     }
-                    if(j>0 && j<7)
+                    if(j>0 && j<7 && i!=7)
                     {
                     	if(tabuleiro[i+1][j-1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j-1));
@@ -140,7 +140,7 @@ public class Breakthrough {
                     	if(tabuleiro[i+1][j+1] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j+1));
                     }
-                    if(j==7)
+                    if(j==7 && i != 7)
                     {
                     	if(tabuleiro[i+1][j] != 2)
                     		lista.add(new Jogadas(i, j, i+1, j));
